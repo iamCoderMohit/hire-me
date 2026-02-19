@@ -64,6 +64,7 @@ export async function runJobFetch() {
             location: job.location?.display_name,
             description: job.description,
             createdAt: new Date(job.created),
+            redirectUrl: job.redirect_url,
             embedding,
           })
           .onConflictDoNothing({ target: jobs.externalId });
