@@ -5,8 +5,8 @@ import FooterCard from "./FooterCard";
 function Footer() {
   return (
     <>
-    <div className="flex p-10 outline-1 outline-white/30">
-      <div className="w-1/4">
+<div className="flex flex-col sm:flex-row p-6 sm:p-10 outline-1 outline-white/30 gap-8 sm:gap-0">
+      <div className="w-full sm:w-1/4">
         <div className="font-bold text-white flex items-center gap-3 cursor-pointer">
           <div className="bg-[#4B2BEE] rounded-md p-2">
             <Logo />
@@ -19,7 +19,7 @@ function Footer() {
         </h1>
       </div>
 
-      <div className="flex w-3/4 justify-around">
+      <div className="grid grid-cols-2 sm:flex sm:flex-row w-full sm:w-3/4 sm:justify-around gap-6 sm:gap-0">
         {footerData.map((card, i) => (
           <FooterCard title={card.title} opt={card.opt} key={i} />
         ))}

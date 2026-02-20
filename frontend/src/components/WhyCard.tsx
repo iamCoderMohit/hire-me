@@ -23,7 +23,7 @@ function WhyCard({ title, desc, icon, isHow }: Input) {
 
 const Icon = iconMap[icon];
   return (
-    <div className={`${!isHow && "bg-[#0F172A]/50"} p-5 ${"rounded-md"} flex flex-col gap-5 ${isHow && "justify-center items-center" }   ${!isHow && "outline-1 outline-white/30"}`}>
+    <div className={`${!isHow && "bg-[#0F172A]/50"} p-5 ${"rounded-md"} flex flex-col gap-5 ${isHow && "justify-center items-center" }   ${!isHow && "outline-1 outline-white/30"} w-90`}>
       <div className={`bg-[#4B2BEE]/20 w-fit ${isHow ? "rounded-full p-7" :"rounded-md p-3"}`}><Icon /></div>
       <h1 className="text-lg font-bold">{title}</h1>
       <h1 className={`text-[#94A3B8] ${isHow && "text-center"}`}>{desc}</h1>

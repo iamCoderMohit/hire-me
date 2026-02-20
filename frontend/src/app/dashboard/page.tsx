@@ -1,8 +1,6 @@
 "use client";
 
 import Button from "@/components/Button";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import { Delete, Resume, UploadWhite } from "../Icons/Svg";
 import DashCard from "@/components/DashCard";
 import NewResumeCard from "@/components/NewResumeCard";
@@ -41,10 +39,10 @@ function page() {
 
   return (
     <div className="bg-[#020617]">
-      <div className="text-white px-10 justify-between mt-5 min-h-[80vh]">
-        <div className="flex justify-between">
-          <div>
-            <h1 className="text-3xl font-black">Dashboard</h1>
+      <div className="text-white md:px-10 p-3 justify-between mt-5 min-h-[80vh]">
+        <div className="flex md:flex-row flex-col justify-between items-center">
+          <div className="mb-5 md:mb-0">
+            <h1 className="text-3xl  font-black">Dashboard</h1>
             <h1 className="text-[#94A3B8]">
               Welcome back, monitor your career opportunities.
             </h1>
@@ -80,7 +78,12 @@ function page() {
                   <div className="absolute -top-10 right-0">
                     <Button
                       text="Cancel"
-                      handleClick={() => setFile(null)}
+                      handleClick={() => {
+                        setFile(null);
+                        if (fileInputRef.current) {
+                          fileInputRef.current.value = "";
+                        }
+                      }}
                       svg
                       SvgElem={<Delete />}
                       cancel
@@ -117,7 +120,7 @@ function page() {
         <h1 className="text-lg font-bold mb-5 mt-10">Your Resumes</h1>
         <div className="mt-10 flex flex-wrap gap-5 mb-10">
           {loading ? (
-            <div className="flex gap-5 flex-wrap">
+            <div className="flex gap-5 flex-wrap justify-center md:justify-normal">
               <ResumeSkeleton />
               <ResumeSkeleton />
               <ResumeSkeleton />
@@ -126,7 +129,7 @@ function page() {
               </div>
             </div>
           ) : resumes.length > 0 ? (
-            <div className="flex gap-5 flex-wrap">
+            <div className="flex gap-5 flex-wrap md:justify-normal justify-center">
               {resumes.map((res) => (
                 <ResumeCard url={res.url} id={res.id} />
               ))}

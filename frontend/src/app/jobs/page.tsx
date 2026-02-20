@@ -18,13 +18,13 @@ function page() {
 
       <div className="mt-10 flex flex-wrap gap-5 mb-10">
         {loading ? (
-          <div className="flex gap-5 flex-wrap">
+          <div className="flex gap-5 flex-wrap justify-center md:justify-normal">
             <ResumeSkeleton />
             <ResumeSkeleton />
             <ResumeSkeleton />
           </div>
         ) : resumes.length > 0 ? (
-          <div className="flex gap-5 flex-wrap">
+          <div className="flex gap-5 flex-wrap justify-center md:justify-normal">
             {resumes.map((res) => (
               <ResumeCard url={res.url} id={res.id} />
             ))}

@@ -21,5 +21,5 @@ export default function Callback() {
     handleLogin();
   }, []);
 
-  return <p className="text-white">Signing you in...</p>;
+  return <p className="text-white h-[70vh]">Signing you in...</p>;
 }

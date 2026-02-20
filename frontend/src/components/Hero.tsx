@@ -25,29 +25,32 @@ function Hero() {
     }, []);
   return (
     <div className=" text-white">
-      <div className="flex justify-center flex-col items-center  h-[70vh] gap-5">
+<div className="flex justify-center flex-col items-center min-h-[70vh] h-auto gap-5 px-4 sm:px-8 py-10 text-center">
         <div className="flex items-center gap-2 bg-[#4B2BEE]/10 w-fit px-5 rounded-full outline-1 outline-[#4B2BEE]/20 stroke-[#4B2BEE]/20">
           <AIIcon />
           <span className="text-sm text-[#4B2BEE] font-bold">
             NEXT-GEN JOB SEARCH
           </span>
         </div>
-        <div className="flex flex-col items-center justify-center text-5xl font-black text-[#94A3B8]">
-          <span className="">Don't search for jobs.</span>
-          <span className="">Let AI find the right ones for you.</span>
+
+        <div className="flex flex-col items-center justify-center text-3xl sm:text-4xl md:text-5xl font-black text-[#94A3B8]">
+          <span>Don't search for jobs.</span>
+          <span>Let AI find the right ones for you.</span>
         </div>
-        <div className="flex flex-col">
-          <span className="text-[#94A3B8] text-center">
-            Upload your resume and let our AI match you with the best
-            internships{" "}
-          </span>
-          <span className="text-[#94A3B8] text-center">
-            and early-career roles based on semantic similarity.
+
+        <div className="flex flex-col max-w-md sm:max-w-xl">
+          <span className="text-[#94A3B8] text-sm sm:text-base text-center">
+            Upload your resume and let our AI match you with the best internships and early-career roles based on semantic similarity.
           </span>
         </div>
-        <div className="flex gap-5">
-          <Link href={user ? "/dashboard" : "/signin"}><Button text="Get Started for Free"  SvgElem={<Arrow />} svg textSize="sm" big /></Link>
-          <a href="#how"><Button text="How it works" textSize="sm" big noBg /></a>
+
+        <div className="flex gap-3 justify-center w-full">
+          <Link href={user ? "/dashboard" : "/signin"} className="">
+            <Button text="Get Started for Free" SvgElem={<Arrow />} svg textSize="sm" big />
+          </Link>
+          <a href="#how" className="">
+            <Button text="How it works" textSize="sm" big noBg />
+          </a>
         </div>
       </div>
       <Companies />
@@ -58,7 +61,7 @@ function Hero() {
           career using advanced AI.
         </span>
       </div>
-      <div className="flex gap-5 p-5 mt-5">
+      <div className="flex gap-5 p-5 mt-5 flex-wrap justify-around">
         {whyCard.map((card, i) => (
           <WhyCard title={card.title} desc={card.desc} icon={card.icon} key={i} />
         ))}
@@ -70,12 +73,12 @@ function Hero() {
           Land you dream Job / Internship in three simple steps.
         </h1>
       </div>
-      <div className="flex gap-5 p-5 mt-5">
+      <div className="flex gap-5 p-5 mt-5 flex-wrap justify-around">
         {howCard.map((card) => (
           <WhyCard isHow title={card.title} desc={card.desc} icon={card.icon} />
         ))}
       </div>
-      <div className="p-20">
+      <div className="md:p-20 mb-10">
         <Cta />
       </div>
     </div>
