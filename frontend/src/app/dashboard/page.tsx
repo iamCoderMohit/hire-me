@@ -14,6 +14,9 @@ import ResumeSkeleton from "@/components/ResumeSkeleton";
 
 function page() {
   const { getResume, loading, resumes } = useResume();
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+
 
   useEffect(() => {
     getResume();
@@ -23,6 +26,17 @@ function page() {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("title", "my-resume");
+
+  useEffect(() => {
+  if (file) {
+    const objectUrl = URL.createObjectURL(file);
+    setPreviewUrl(objectUrl);
+
+    return () => {
+      URL.revokeObjectURL(objectUrl);
+    };
+  }
+}, [file]);
 
   const [uploadLoading, setUploadLoading] = useState(false);
   const fileInputRef = useRef(null);
@@ -91,7 +105,7 @@ function page() {
                     />
                   </div>
 
-                  <ResumePreview url={URL.createObjectURL(file)} />
+                  {previewUrl && <ResumePreview url={previewUrl} />}
 
                   <Button
                     text={`Upload ${file.name}`}

@@ -1,17 +1,31 @@
 "use client";
 
-import { Document, Page, pdfjs } from "react-pdf";
 import { useEffect, useState } from "react";
 
 export default function ResumePreview({ url }: { url: string }) {
   const [scale, setScale] = useState(0.5);
+  const [PdfComponents, setPdfComponents] = useState(null);
 
   useEffect(() => {
-    pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-      "pdfjs-dist/build/pdf.worker.min.mjs",
-      import.meta.url,
-    ).toString();
+    const loadPdf = async () => {
+      const pdf = await import("react-pdf");
+      pdf.pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+        "pdfjs-dist/build/pdf.worker.min.mjs",
+        import.meta.url
+      ).toString();
+
+      setPdfComponents({
+        Document: pdf.Document,
+        Page: pdf.Page,
+      });
+    };
+
+    loadPdf();
   }, []);
+
+    if (!PdfComponents) return <div>Loading PDF...</div>;
+
+  const { Document, Page } = PdfComponents;
 
   return (
     <div
