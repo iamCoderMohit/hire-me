@@ -1,7 +1,5 @@
 "use client"
 
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
 import { GoogleLogo } from '../Icons/Svg'
 import { signin } from '@/lib/api/signin'
 

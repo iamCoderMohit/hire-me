@@ -2,9 +2,8 @@ import { createServerClient } from "@supabase/ssr"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const response = NextResponse.next()
-
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -27,8 +26,16 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  console.log(user)
+
   // If no user and trying to access dashboard
   if (!user && request.nextUrl.pathname.startsWith("/dashboard")) {
+    return NextResponse.redirect(new URL("/signin", request.url))
+  }
+  if (!user && request.nextUrl.pathname.startsWith("/jobs")) {
+    return NextResponse.redirect(new URL("/signin", request.url))
+  }
+  if (!user && request.nextUrl.pathname.startsWith("/github")) {
     return NextResponse.redirect(new URL("/signin", request.url))
   }
 
