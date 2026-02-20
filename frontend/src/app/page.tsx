@@ -6,9 +6,7 @@ import Navbar from "@/components/Navbar"
 function page() {
   return (
     <div className="bg-[#020617]">
-      <Navbar />
       <Hero />
-      <Footer />
     </div>
   )
 }

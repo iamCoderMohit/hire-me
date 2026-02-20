@@ -8,8 +8,21 @@ import { howCard, whyCard } from "@/app/data/data";
 import Cta from "./Cta";
 import Footer from "./Footer";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 function Hero() {
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+      async function getUser() {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        setUser(user);
+      }
+  
+      getUser();
+    }, []);
   return (
     <div className=" text-white">
       <div className="flex justify-center flex-col items-center  h-[70vh] gap-5">
@@ -33,7 +46,7 @@ function Hero() {
           </span>
         </div>
         <div className="flex gap-5">
-          <Link href={"/signin"}><Button text="Get Started for Free"  SvgElem={<Arrow />} svg textSize="sm" big /></Link>
+          <Link href={user ? "/dashboard" : "/signin"}><Button text="Get Started for Free"  SvgElem={<Arrow />} svg textSize="sm" big /></Link>
           <a href="#how"><Button text="How it works" textSize="sm" big noBg /></a>
         </div>
       </div>

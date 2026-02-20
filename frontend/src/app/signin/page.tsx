@@ -8,7 +8,6 @@ import { signin } from '@/lib/api/signin'
 function page() {
   return (
     <div className="bg-[#020617]">
-        <Navbar />
         <div className='text-white h-[70vh] flex flex-col justify-center items-center gap-5'>
             <h1 className='text-3xl font-bold'>Unlock your potential</h1>
             <h1 className="text-[#94A3B8]">AI-powered job matching for students & freshers.</h1>
@@ -29,7 +28,6 @@ function page() {
             </div>
             <h1 className='text-[#94A3B8] tracking-widest text-sm'>EXPLORE MORE THAN 1000 COMPANIES.</h1>
         </div>
-        <Footer />
     </div>
   )
 }

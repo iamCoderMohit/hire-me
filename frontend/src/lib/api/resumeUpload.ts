@@ -5,16 +5,18 @@ export const resumeUpload = async (formData: FormData) => {
         if(!formData){
             return
         }
-        api.post("/step-1/upload-resume", formData, {
+        await api.post("/step-1/upload-resume", formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         })
+        return true
     } catch (error) {
         console.error(error)
     }
 }
-
+//fix the upload thing, currently its not uploading
+// show loading or something 
 export const resumeUploadTest = async (formData: FormData) => {
     try {
         if(!formData){

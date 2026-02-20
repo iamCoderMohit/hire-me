@@ -1,14 +1,15 @@
 import api from "@/lib/axios"
 import { useState } from "react"
 
-export function useResume(){
-    const [resumes, setResumes] = useState([])
+export function useJobs(){
+    const [jobs, setJobs] = useState([])
     const [loading, setLoading] = useState(false)
-    const getResume = async () => {
+
+    const getJobs = async (id: string) => {
         try {
             setLoading(true)
-            const res = await api.get("/resume/")
-            setResumes(res.data.data)
+            const res = await api.get(`/step-2/job-match/${id}`)
+            setJobs(res.data.data)
             setLoading(false)
         } catch (error) {
             console.error(error)
@@ -16,8 +17,8 @@ export function useResume(){
     }
 
     return {
-        getResume,
+        jobs,
         loading,
-        resumes
+        getJobs
     }
 }
