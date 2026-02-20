@@ -4,9 +4,10 @@ import dynamic from "next/dynamic";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
 
-const ResumeViewer = dynamic(() => import("./ResumeViewer"), {
-  ssr: false,
-});
+const ResumeViewer = dynamic(
+  () => import("@/components/./ResumeViewer"),
+  { ssr: false }
+)
 
 export default function ResumeCard({ url, id }: { url: string, id: string }) {
   const router = useRouter()

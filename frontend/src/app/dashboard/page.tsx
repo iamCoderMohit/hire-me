@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic"; 
 
 import Button from "@/components/Button";
 import { Delete, Resume, UploadWhite } from "../Icons/Svg";
