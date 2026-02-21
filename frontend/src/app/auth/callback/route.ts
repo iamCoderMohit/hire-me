@@ -38,7 +38,7 @@ export async function GET(request: Request) {
   } = await supabase.auth.getSession();
 
   if (session) {
-    await fetch("https://your-backend.onrender.com/auth/sync-user", {
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/sync-user`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${session.access_token}`,
