@@ -29,15 +29,22 @@ export async function GET(request: Request) {
           response.cookies.set({ name, value: "", ...options });
         },
       },
-    }
+    },
   );
 
   await supabase.auth.exchangeCodeForSession(code);
-  const { data: { session } } = await supabase.auth.getSession();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  if(session){
-    await api.get("/auth/sync-user")
+  if (session) {
+    await fetch("https://your-backend.onrender.com/auth/sync-user", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${session.access_token}`,
+      },
+    });
   }
 
-  return response; 
+  return response;
 }
