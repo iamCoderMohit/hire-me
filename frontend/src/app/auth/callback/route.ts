@@ -33,5 +33,5 @@ export async function GET(request: Request) {
 
   await supabase.auth.exchangeCodeForSession(code);
 
-  return response; // ✅ RETURN SAME RESPONSE
+  return response; 
 }

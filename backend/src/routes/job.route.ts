@@ -11,8 +11,11 @@ jobRouter.post("/admin/run-job-fetch", async (req, res) => {
   if (req.headers["x-cron-secret"] !== process.env.CRON_SECRET) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-  await runJobFetch();
-  successResponse(res, { data: "done" });
+  successResponse(res, { data: "started" });
+
+  runJobFetch().catch(err => {
+    console.error("job failed", err)
+  });
 });
 
 jobRouter.get("/job-match/:resumeId", verifyUser, async (req, res) => {
