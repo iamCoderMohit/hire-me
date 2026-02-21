@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import api from "@/lib/axios";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -32,6 +33,11 @@ export async function GET(request: Request) {
   );
 
   await supabase.auth.exchangeCodeForSession(code);
+  const { data: { session } } = await supabase.auth.getSession();
+
+  if(session){
+    await api.get("/auth/sync-user")
+  }
 
   return response; 
 }

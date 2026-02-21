@@ -15,6 +15,7 @@ export const resumeUpload = async (formData: FormData) => {
         console.error(error)
     }
 }
+
 //fix the upload thing, currently its not uploading
 // show loading or something 
 export const resumeUploadTest = async (formData: FormData) => {
