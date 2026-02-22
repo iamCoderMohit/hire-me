@@ -7,14 +7,15 @@ import { and, sql } from "drizzle-orm";
 
 const jobRouter = express.Router();
 
-jobRouter.post("/admin/run-job-fetch", async (req, res) => {
+jobRouter.post("/admin/run-job-fetch", (req, res) => {
   if (req.headers["x-cron-secret"] !== process.env.CRON_SECRET) {
-    return res.status(401).json({ message: "Unauthorized" });
+    return res.status(401).end();
   }
-  successResponse(res, { data: "started" });
+
+  res.status(200).end();
 
   runJobFetch().catch(err => {
-    console.error("job failed", err)
+    console.error("job failed", err);
   });
 });
 
